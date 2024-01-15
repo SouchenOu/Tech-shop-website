@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>salut soukaina</h2>
+    <p>Ich bin soukaina</p>
+    <p id="demo"></p>
+
+    <script>
+        const cars = ["Saab", "Volvo", "BMW"];
+        cars[0] = "Toyota"; // i can change the content of a const element (Declaring a constant array does NOT make the elements unchangeable:)
+
+        cars.push("Audi"); // but i can add an element in a content array
+
+        document.getElementById("demo").innerHTML = cars;
+    </script>
+</body>
+</html>
