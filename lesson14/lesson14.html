@@ -9,6 +9,7 @@
 </head>
 <body>
     <p id="test"></p>
+    <p id="test2"></p>
     <script>
         let text =""
         const person = {
@@ -26,11 +27,14 @@
                 car2 : "BMW",
                 car3 : "Fiat",            }
         }
-        
+
         for (let x in person){
             text = text + person[x] + " ";
         }
         document.getElementById("test").innerHTML = text;
+
+
+        document.getElementById("test2").innerHTML = Object.values(person);
 
     </script>
 </body>
