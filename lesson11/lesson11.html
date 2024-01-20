@@ -1,0 +1,32 @@
+<!-----------ForEach() and map()-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="test"></p>
+    <p id="test2"></p>
+    <script>
+        const numbers = [1,2,3,4,5];
+        const ArrayNumbers = [20,30,40,50];
+
+        let text = "";
+        numbers.forEach(MyFunction);
+        let result = ArrayNumbers.map(MyFunction2);
+        document.getElementById("test").innerHTML = text;
+        document.getElementById("test2").innerHTML = result;
+
+        function MyFunction(value){
+            text = text + value;
+        }
+        function MyFunction2(value, index, array)
+        {
+            return value * 2;
+        }
+    </script>
+</body>
+</html>
