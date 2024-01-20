@@ -25,14 +25,19 @@
             cars : {
                 car1 : "Ford",
                 car2 : "BMW",
-                car3 : "Fiat",            }
+                car3 : "Fiat",
+            },
+            // we can also apply a function outside an object
+            fun : function function1(){
+                console.log("function outside the object");
+            }
         }
 
         for (let x in person){
             text = text + person[x] + " ";
         }
         document.getElementById("test").innerHTML = text;
-
+        console.log("the age is -->", myObj['age']);
 
         document.getElementById("test2").innerHTML = Object.values(person);
 
