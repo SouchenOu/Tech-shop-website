@@ -1,0 +1,22 @@
+<!------*************************----Find the index of an element*****************************-->
+
+<!---------*********----IndexOf() and lastIndexOf()***************************-------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="test1"></p>
+    <p id="test2"></p>
+    <script>
+        const fruits1 = ["Apple", "Orange", "Mango"];
+        const fruits2 = ["Apple", "Orange", "Apple", "Mango"];
+        document.getElementById("test1").innerHTML = fruits1.indexOf("Apple") + 1;
+        document.getElementById("test2").innerHTML = fruits2.lastIndexOf("Apple");
+    </script>
+</body>
+</html>
