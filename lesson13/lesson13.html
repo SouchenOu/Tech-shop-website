@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="test"></p>
+    <script>
+        const array = [10,20,30,40,50];
+        let sum = array.reduce(MyFunction);
+        document.getElementById("test").innerHTML = sum;
+        function MyFunction(total, value, index, array)
+        {
+            return total + value;
+
+        }
+    </script>
+</body>
+</html>
