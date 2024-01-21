@@ -1,0 +1,34 @@
+<!---------DOM -:   document object model*******************-->
+
+<!----------all this is an objects  because an html element is a javascript objects-->
+<!---------1: document.title  : we can put a title ***************************-->
+<!---------2: document.body.innerHTML : we can get any element and put it outside the body-->
+<!---------3: document.querySelector() : we can get any element from the page and put it inside the javascript**************-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>hello soukaina</p>
+    <button>Send a Message</button>
+    <button class="btn2">Receive a message</button>
+    <script> 
+    
+    //******** we can change what i want in the body by using document.body.innerHTML
+    // document.body.innerHTML = "hello souchen";
+    //******** in the body we will found just the last document.body.innerHTML
+    // document.body.innerHTML = '<button>Good job</button>';
+    document.title = "javascript DOM";
+    // I change the first button by using just the name of the element (button)
+    document.querySelector('button').innerHTML = "I change the content";
+    //  i change the button number 2 by using his class
+    document.querySelector('.btn2').innerHTML = "I change the content 2"
+    
+    </script>
+    
+</body>
+</html>
