@@ -8,6 +8,8 @@
     <title>Document</title>
 </head>
 <body>
+
+    <button class="btn">send</button>
   <script>
     //function
 
@@ -15,7 +17,8 @@
         console.log("outside the function 1");
     }
 
-    const MyFunction2 = () =>{
+    const MyFunction2 = () =>
+    {
         console.log("outside the function2");
     }
 
@@ -30,7 +33,29 @@
     }
 
     const MyFunction5 = () => 8 + 9 ;
+
+    const button = document.querySelector('.btn');
+    button.addEventListener('click', () => {
+        console.log("Send message");
+    })
     
+    /********/
+    function eventListener() {
+        console.log("function to test");
+    }
+    // we can use a function so when we click for this button we use this function eventListener
+    button.addEventListener('click', eventListener);
+    
+    /********/
+
+    document.body.addEventListener('keydown', (event) =>{
+        if(event.key === 'r'){
+            console.log("key r");
+        }else if(event.key === 'p')
+        {
+            console.log("key p");
+        }
+    })
   </script>
     
 </body>
