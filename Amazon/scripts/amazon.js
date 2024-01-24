@@ -1,5 +1,5 @@
-console.log("yes");
-
+import { arrayCheckout } from "../data/card.js";
+import { products } from "./products.js";
 // const products = [
     
 //     {
