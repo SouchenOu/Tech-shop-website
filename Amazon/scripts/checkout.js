@@ -1,10 +1,10 @@
 
 
-    let html = "" ;
-
+    let html = '' ;
+    console.log("array here-->", arrayCheckout);
     arrayCheckout.forEach((elem) =>{
 
-        console.log("ceckout-->", arrayCheckout);
+        console.log("checkout-->", arrayCheckout);
     html  += `  <div class="cart-item-container">
     <div class="delivery-date">
       Delivery date: Tuesday, June 21
@@ -83,4 +83,4 @@
 })
 
 
-document.querySelector('.order-summary').innerHTML = html;
+// document.querySelector('.order-summary').innerHTML = html;

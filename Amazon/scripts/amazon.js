@@ -104,13 +104,16 @@ products.forEach((elem)=>{
      Added
    </div>
 
-   <button class="add-to-cart-button button-primary  btn-click" data-product-name="${elem.name}" >
+   <button class="add-to-cart-button button-primary  btn-click" data-product-id="${elem.id}" >
      Add to Cart
    </button>
  </div>
 `
 
-})
+})      
+
+
+console.log("array here-->", arrayCheckout);
 
 
 document.querySelector('.products-grid').innerHTML = productHTML;
@@ -119,12 +122,12 @@ document.querySelector('.products-grid').innerHTML = productHTML;
 document.querySelectorAll(".btn-click").forEach((button)=>{
     button.addEventListener( 'click', () =>{
       console.log("name hare", button.dataset);
-      const productName = button.dataset.productName;
+      const productId = button.dataset.productId;
 
       let itemQuantity;
 
       arrayCheckout.forEach((elem) =>{
-        if(productName === elem.productName){
+        if(productId === elem.productId){
           itemQuantity = elem;
         }
       })
@@ -133,13 +136,21 @@ document.querySelectorAll(".btn-click").forEach((button)=>{
         itemQuantity.quantity++;
       }else{
         arrayCheckout.push({
-          productName : productName,
+          productId : productId,
           quantity : 1,
         });
 
       }
 
+      let itemChariot = 0;
+
+      arrayCheckout.forEach((item) => {
+        itemChariot += item.quantity;
+      })
+      document.querySelector('.js-cart-quantity').innerHTML = itemChariot;
+
+
       
-      console.log("array here-->", arrayCheckout);
     })
 })
+
