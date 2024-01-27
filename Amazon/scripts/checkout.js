@@ -51,7 +51,7 @@ import { products } from "./products.js";
         <div class="delivery-option">
           <input type="radio" checked
             class="delivery-option-input"
-            name="delivery-option-1">
+            name="delivery-option-${matchingProduct.id}">
           <div>
             <div class="delivery-option-date">
               Tuesday, June 21
@@ -64,7 +64,7 @@ import { products } from "./products.js";
         <div class="delivery-option">
           <input type="radio"
             class="delivery-option-input"
-            name="delivery-option-1">
+            name="delivery-option-${matchingProduct.id}">
           <div>
             <div class="delivery-option-date">
               Wednesday, June 15
@@ -77,7 +77,7 @@ import { products } from "./products.js";
         <div class="delivery-option">
           <input type="radio"
             class="delivery-option-input"
-            name="delivery-option-1">
+            name="delivery-option-${matchingProduct}">
           <div>
             <div class="delivery-option-date">
               Monday, June 13
@@ -92,5 +92,13 @@ import { products } from "./products.js";
   </div>`;
 });
 
-console.log("html here-->", htmlResult);
 document.querySelector('.order-summary').innerHTML = htmlResult;
+
+
+// working for delete button
+
+document.querySelectorAll('.link-primary').forEach((elem)=>{
+  document.addEventListener('click', ()=>{
+    console.log("delete...");
+  })
+})
