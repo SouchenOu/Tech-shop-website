@@ -8,11 +8,11 @@ import { products } from "./products.js";
       console.log("herere");
 
       const productId = item.productId;
-      let matchingProduct;
+      let ThisProduct;
       products.forEach((product) =>{
         if(product.id === productId)
         {
-          matchingProduct = product;
+          ThisProduct = product;
         }
       })
     htmlResult  += `  <div class="cart-item-container">
@@ -22,14 +22,14 @@ import { products } from "./products.js";
 
     <div class="cart-item-details-grid">
       <img class="product-image"
-        src=${matchingProduct.image}>
+        src=${ThisProduct.image}>
 
       <div class="cart-item-details">
         <div class="product-name">
-          ${matchingProduct.name}
+          ${ThisProduct.name}
         </div>
         <div class="product-price">
-          ${matchingProduct.price}
+          ${ThisProduct.price}
         </div>
         <div class="product-quantity">
           <span>
@@ -38,7 +38,7 @@ import { products } from "./products.js";
           <span class="update-quantity-link link-primary">
             Update
           </span>
-          <span class="delete-quantity-link link-primary">
+          <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${ThisProduct.id}">
             Delete
           </span>
         </div>
@@ -51,7 +51,7 @@ import { products } from "./products.js";
         <div class="delivery-option">
           <input type="radio" checked
             class="delivery-option-input"
-            name="delivery-option-${matchingProduct.id}">
+            name="delivery-option-${ThisProduct.id}">
           <div>
             <div class="delivery-option-date">
               Tuesday, June 21
@@ -64,7 +64,7 @@ import { products } from "./products.js";
         <div class="delivery-option">
           <input type="radio"
             class="delivery-option-input"
-            name="delivery-option-${matchingProduct.id}">
+            name="delivery-option-${ThisProduct.id}">
           <div>
             <div class="delivery-option-date">
               Wednesday, June 15
@@ -77,7 +77,7 @@ import { products } from "./products.js";
         <div class="delivery-option">
           <input type="radio"
             class="delivery-option-input"
-            name="delivery-option-${matchingProduct}">
+            name="delivery-option-${ThisProduct.id}">
           <div>
             <div class="delivery-option-date">
               Monday, June 13
@@ -97,8 +97,37 @@ document.querySelector('.order-summary').innerHTML = htmlResult;
 
 // working for delete button
 
-document.querySelectorAll('.link-primary').forEach((elem)=>{
-  document.addEventListener('click', ()=>{
+document.querySelectorAll('.js-delete-link').forEach((elem)=>{
+  console.log("elem-->", elem);
+  elem.addEventListener('click', ()=>{
+    // i want when i click delete to remove the product from the cart
     console.log("delete...");
+    const productId = elem.dataset.productId;
+
+    deleteElement(productId);
   })
 })
+
+
+function deleteElement  (productId) {
+    const  NewArray = [];
+    console.log("arrayCheckout here-->", arrayCheckout);
+    // for (let i = 0; i < arrayCheckout.length; i++){
+    //     if(arrayCheckout[i].productId !== productId){
+    //         NewArray[i] = arrayCheckout[i];
+    //     }
+    // }
+    //other sollution
+    console.log("productId-->", productId);
+    arrayCheckout.forEach((elem) =>{
+      if(elem.productId !== productId){
+        NewArray.push(elem);
+      }
+    })
+
+    arrayCheckout.length = 0;  // Clear the original array
+    arrayCheckout.push(...NewArray); 
+    console.log("array result-->", arrayCheckout);
+
+
+}
