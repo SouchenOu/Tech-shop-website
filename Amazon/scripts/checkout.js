@@ -1,7 +1,7 @@
 import { arrayCheckout } from "../data/card.js";
 import { products } from "./products.js";
+import { saveToLocalStorage } from "../data/card.js";
 
-    console.log("array here-->", arrayCheckout);
     
   let htmlResult = '';
     arrayCheckout.forEach((item) =>{
@@ -99,7 +99,6 @@ document.querySelector('.order-summary').innerHTML = htmlResult;
 // working for delete button
 
 document.querySelectorAll('.js-delete-link').forEach((elem)=>{
-  console.log("elem-->", elem);
   elem.addEventListener('click', ()=>{
     // i want when i click delete to remove the product from the cart
     console.log("delete...");
@@ -115,14 +114,12 @@ document.querySelectorAll('.js-delete-link').forEach((elem)=>{
 
 function deleteElement  (productId) {
     const  NewArray = [];
-    console.log("arrayCheckout here-->", arrayCheckout);
     // for (let i = 0; i < arrayCheckout.length; i++){
     //     if(arrayCheckout[i].productId !== productId){
     //         NewArray[i] = arrayCheckout[i];
     //     }
     // }
     //other sollution
-    console.log("productId-->", productId);
     arrayCheckout.forEach((elem) =>{
       if(elem.productId !== productId){
         NewArray.push(elem);
@@ -131,7 +128,7 @@ function deleteElement  (productId) {
 
     arrayCheckout.length = 0;  // Clear the original array
     arrayCheckout.push(...NewArray); 
-    console.log("array result-->", arrayCheckout);
+    saveToLocalStorage();
 
 
 }
