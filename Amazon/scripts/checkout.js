@@ -5,7 +5,6 @@ import { products } from "./products.js";
     
   let htmlResult = '';
     arrayCheckout.forEach((item) =>{
-      console.log("herere");
 
       const productId = item.productId;
       let ThisProduct;
@@ -15,7 +14,9 @@ import { products } from "./products.js";
           ThisProduct = product;
         }
       })
-    htmlResult  += `  <div class="cart-item-container">
+    htmlResult  += `  
+    
+    <div class="cart-item-container cart-item-container-${ThisProduct.id}">
     <div class="delivery-date">
       Delivery date: Tuesday, June 21
     </div>
@@ -105,6 +106,9 @@ document.querySelectorAll('.js-delete-link').forEach((elem)=>{
     const productId = elem.dataset.productId;
 
     deleteElement(productId);
+
+    const element= document.querySelector(`.cart-item-container-${productId}`);
+    element.remove();
   })
 })
 
