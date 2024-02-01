@@ -1,3 +1,4 @@
+
 export let arrayCheckout = JSON.parse(localStorage.getItem('arrayCheckout'));
 
 
@@ -26,6 +27,9 @@ if(!arrayCheckout)
     ];
 
 }
+
+
+
 
 
 

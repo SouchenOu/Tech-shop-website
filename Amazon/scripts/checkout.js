@@ -6,6 +6,7 @@ import { deliveryOptions } from "./delivery.js";
     
   let htmlResult = '';
     arrayCheckout.forEach((item) =>{
+     console.log("item Id -->", item.productId)
 
       const productId = item.productId;
       let ThisProduct;
@@ -14,56 +15,76 @@ import { deliveryOptions } from "./delivery.js";
         {
           ThisProduct = product;
         }
+      });
+
+      let deliveryOptionElem;
+      let dayString;
+      deliveryOptions.forEach((option) =>{
+        const today = dayjs();
+  
+        const deliveryDay = today.add(option.deliveryDays, "days");
+      
+        dayString = deliveryDay.format('dddd, MMMM D');
+         if(item.deliveryId === option.deliveryId)
+            deliveryOptionElem = option;
+
+           
+
       })
-    htmlResult  += `  
+
+      htmlResult  += `  
     
-    <div class="cart-item-container cart-item-container-${ThisProduct.id}">
-    <div class="delivery-date">
-      Delivery date: Tuesday, June 21
-    </div>
-
-    <div class="cart-item-details-grid">
-      <img class="product-image"
-        src=${ThisProduct.image}>
-
-      <div class="cart-item-details">
-        <div class="product-name">
-          ${ThisProduct.name}
+      <div class="cart-item-container cart-item-container-${ThisProduct.id}">
+      <div class="delivery-date">
+        Delivery date: ${dayString}
+      </div>
+  
+      <div class="cart-item-details-grid">
+        <img class="product-image"
+          src=${ThisProduct.image}>
+  
+        <div class="cart-item-details">
+          <div class="product-name">
+            ${ThisProduct.name}
+          </div>
+          <div class="product-price">
+            ${ThisProduct.price}
+          </div>
+          <div class="product-quantity">
+            <span>
+              Quantity: <span class="quantity-label">${item.quantity}</span>
+            </span>
+            <span class="update-quantity-link link-primary">
+              Update
+            </span>
+            <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${ThisProduct.id}">
+              Delete
+            </span>
+          </div>
         </div>
-        <div class="product-price">
-          ${ThisProduct.price}
-        </div>
-        <div class="product-quantity">
-          <span>
-            Quantity: <span class="quantity-label">${item.quantity}</span>
-          </span>
-          <span class="update-quantity-link link-primary">
-            Update
-          </span>
-          <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${ThisProduct.id}">
-            Delete
-          </span>
+  
+        <div class="delivery-options" >
+          <div class="delivery-options-title">
+            Choose a delivery option:
+          </div>
+          ${deliveryFunction(ThisProduct, item)}
+          
+          
+         
         </div>
       </div>
+    </div>`;
 
-      <div class="delivery-options">
-        <div class="delivery-options-title">
-          Choose a delivery option:
-        </div>
-        ${deliveryFunction(ThisProduct)}
-        
-        
-       
-      </div>
-    </div>
-  </div>`;
+
+    
+    
 });
 
 document.querySelector('.order-summary').innerHTML = htmlResult;
 // working for deliveryOptions
 
 
-function deliveryFunction(product)
+function deliveryFunction(product, ArrayCheckout)
 {
   let htmlCode = '';
 
@@ -74,10 +95,12 @@ function deliveryFunction(product)
   
     const dayString = deliveryDay.format('dddd, MMMM D');
   
-    const price = elem.priceCent === 0 ? 'FREE' : `$$${elem.priceCent}`
+    const price = elem.priceCent === 0 ? 'FREE' : `$$${elem.priceCent}`;
+    let checked = arrayCheckout.deliveryId === elem.deliveryId 
+   
   
-    htmlCode = htmlCode +  `<div class="delivery-option">
-    <input type="radio"
+    htmlCode = htmlCode +  `<div class="delivery-option" data-product-id="${product.id}" data-delivery-option-id="${elem.deliveryId}">
+    <input type="radio" ${checked ? 'checked' : ''}
       class="delivery-option-input"
       name="delivery-option-${product.id}">
     <div>
@@ -132,6 +155,33 @@ function deleteElement  (productId) {
     arrayCheckout.length = 0;  // Clear the original array
     arrayCheckout.push(...NewArray); 
     saveToLocalStorage();
+
+
+}
+
+document.querySelectorAll('.delivery-option').forEach((item)=>{
+
+  item.addEventListener('click', ()=>{
+    let data =  item.dataset;
+    const {productId, deliveryId} = data;
+    console.log("elemId-->", productId);
+    console.log("delivery-->", deliveryId);
+      // updateDeliveryOption(productId, deliveryOptionsId);
+  })
+
+
+})
+
+function updateDeliveryOption (productId, deliveryId){
+
+  deliveryOptions.forEach((elem) =>{
+    if(elem.deliveryId === deliveryId)
+    {
+      
+    }
+  })
+
+
 
 
 }
