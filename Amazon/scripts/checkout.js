@@ -1,6 +1,6 @@
-import { arrayCheckout } from "../data/card.js";
+import { arrayCheckout } from "../data/ArrayCheckout.js";
 import { products } from "./products.js";
-import { saveToLocalStorage } from "../data/card.js";
+import { saveToLocalStorage } from "../data/ArrayCheckout.js";
 
     
   let htmlResult = '';
@@ -94,6 +94,9 @@ import { saveToLocalStorage } from "../data/card.js";
 });
 
 document.querySelector('.order-summary').innerHTML = htmlResult;
+
+// working for deliveryOptions
+
 
 
 // working for delete button

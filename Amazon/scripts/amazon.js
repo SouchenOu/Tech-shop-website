@@ -1,4 +1,4 @@
-import { arrayCheckout, saveToLocalStorage } from "../data/card.js";
+import { arrayCheckout, saveToLocalStorage } from "../data/ArrayCheckout.js";
 import { products } from "./products.js";
 // const products = [
     
@@ -138,6 +138,7 @@ document.querySelectorAll(".btn-click").forEach((button)=>{
         arrayCheckout.push({
           productId : productId,
           quantity : 1,
+          deliveryId : '1',
         });
 
       }
