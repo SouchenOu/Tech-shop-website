@@ -1,6 +1,7 @@
 import { arrayCheckout } from "../data/ArrayCheckout.js";
 import { products } from "./products.js";
 import { saveToLocalStorage } from "../data/ArrayCheckout.js";
+import { deliveryOptions } from "./delivery.js";
 
     
   let htmlResult = '';
@@ -49,53 +50,52 @@ import { saveToLocalStorage } from "../data/ArrayCheckout.js";
         <div class="delivery-options-title">
           Choose a delivery option:
         </div>
-        <div class="delivery-option">
-          <input type="radio" checked
-            class="delivery-option-input"
-            name="delivery-option-${ThisProduct.id}">
-          <div>
-            <div class="delivery-option-date">
-              Tuesday, June 21
-            </div>
-            <div class="delivery-option-price">
-              FREE Shipping
-            </div>
-          </div>
-        </div>
-        <div class="delivery-option">
-          <input type="radio"
-            class="delivery-option-input"
-            name="delivery-option-${ThisProduct.id}">
-          <div>
-            <div class="delivery-option-date">
-              Wednesday, June 15
-            </div>
-            <div class="delivery-option-price">
-              $4.99 - Shipping
-            </div>
-          </div>
-        </div>
-        <div class="delivery-option">
-          <input type="radio"
-            class="delivery-option-input"
-            name="delivery-option-${ThisProduct.id}">
-          <div>
-            <div class="delivery-option-date">
-              Monday, June 13
-            </div>
-            <div class="delivery-option-price">
-              $9.99 - Shipping
-            </div>
-          </div>
-        </div>
+        ${deliveryFunction(ThisProduct)}
+        
+        
+       
       </div>
     </div>
   </div>`;
 });
 
 document.querySelector('.order-summary').innerHTML = htmlResult;
-
 // working for deliveryOptions
+
+
+function deliveryFunction(product)
+{
+  let htmlCode = '';
+
+  deliveryOptions.forEach((elem) =>{
+    const today = dayjs();
+  
+    const deliveryDay = today.add(elem.deliveryDays, "days");
+  
+    const dayString = deliveryDay.format('dddd, MMMM D');
+  
+    const price = elem.priceCent === 0 ? 'FREE' : `$$${elem.priceCent}`
+  
+    htmlCode = htmlCode +  `<div class="delivery-option">
+    <input type="radio"
+      class="delivery-option-input"
+      name="delivery-option-${product.id}">
+    <div>
+      <div class="delivery-option-date">
+        ${dayString}
+      </div>
+      <div class="delivery-option-price">
+       ${price} - Shipping
+      </div>
+    </div>
+  </div>`
+  
+  })
+  return htmlCode;
+}
+
+
+
 
 
 
