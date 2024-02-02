@@ -31,8 +31,7 @@ import { deliveryOptions } from "./delivery.js";
 
         }
         
-        //  if(item.deliveryId === option.deliveryId)
-        //     deliveryOptionElem = option;
+      
 
            
 
@@ -177,7 +176,7 @@ function updateDeliveryOption(productId, deliveryId) {
   // Update the deliveryId if the product is found
   if (index !== -1) {
       arrayCheckout[index].deliveryId = deliveryId;
-      saveToLocalStorage();
+    saveToLocalStorage();
   }
 
 
@@ -192,7 +191,7 @@ document.querySelectorAll('.js-delivery-option').forEach((item)=>{
     const {productId, deliveryOptionId} = data;
     console.log("elemId-->", productId);
     console.log("delivery-->", deliveryOptionId);
-      updateDeliveryOption(productId, deliveryOptionId);
+    updateDeliveryOption(productId, deliveryOptionId);
   })
 
 
