@@ -20,17 +20,25 @@ import { deliveryOptions } from "./delivery.js";
       let deliveryOptionElem;
       let dayString;
       deliveryOptions.forEach((option) =>{
-        const today = dayjs();
+
+        if(item.deliveryId  === option.deliveryId)
+        {
+          const today = dayjs();
   
-        const deliveryDay = today.add(option.deliveryDays, "days");
+          const deliveryDay = today.add(option.deliveryDays, "days");
       
-        dayString = deliveryDay.format('dddd, MMMM D');
-         if(item.deliveryId === option.deliveryId)
-            deliveryOptionElem = option;
+          dayString = deliveryDay.format('dddd, MMMM D');
+
+        }
+        
+        //  if(item.deliveryId === option.deliveryId)
+        //     deliveryOptionElem = option;
 
            
 
       })
+
+      console.log("item hna-->", item);
 
       htmlResult  += `  
     
@@ -67,7 +75,7 @@ import { deliveryOptions } from "./delivery.js";
           <div class="delivery-options-title">
             Choose a delivery option:
           </div>
-          ${deliveryFunction(ThisProduct, item)}
+              ${deliveryFunction(ThisProduct, item)}
           
           
          
@@ -84,8 +92,9 @@ document.querySelector('.order-summary').innerHTML = htmlResult;
 // working for deliveryOptions
 
 
-function deliveryFunction(product, ArrayCheckout)
+function deliveryFunction(product, item)
 {
+  
   let htmlCode = '';
 
   deliveryOptions.forEach((elem) =>{
@@ -96,11 +105,13 @@ function deliveryFunction(product, ArrayCheckout)
     const dayString = deliveryDay.format('dddd, MMMM D');
   
     const price = elem.priceCent === 0 ? 'FREE' : `$$${elem.priceCent}`;
-    let checked = arrayCheckout.deliveryId === elem.deliveryId 
+    console.log("elem and delivery-->", elem, item);
+    const isChecked =  elem.deliveryId === item.deliveryId;
+    console.log("check", isChecked);
    
-  
-    htmlCode = htmlCode +  `<div class="delivery-option" data-product-id="${product.id}" data-delivery-option-id="${elem.deliveryId}">
-    <input type="radio" ${checked ? 'checked' : ''}
+    // console.log("deliveryId-->", elem.deliveryId);
+    htmlCode = htmlCode +  `<div class="delivery-option js-delivery-option" data-product-id="${product.id}" data-delivery-option-id="${elem.deliveryId}">
+    <input type="radio" ${isChecked ? 'checked' : ''}
       class="delivery-option-input"
       name="delivery-option-${product.id}">
     <div>
@@ -159,29 +170,31 @@ function deleteElement  (productId) {
 
 }
 
-document.querySelectorAll('.delivery-option').forEach((item)=>{
+function updateDeliveryOption(productId, deliveryId) {
+  // Find the index of the matching product in arrayCheckout
+  const index = arrayCheckout.findIndex(elem => elem.productId === productId);
+
+  // Update the deliveryId if the product is found
+  if (index !== -1) {
+      arrayCheckout[index].deliveryId = deliveryId;
+      saveToLocalStorage();
+  }
+
+
+  console.log("arraycheckout heree-->", arrayCheckout);
+}
+
+document.querySelectorAll('.js-delivery-option').forEach((item)=>{
 
   item.addEventListener('click', ()=>{
     let data =  item.dataset;
-    const {productId, deliveryId} = data;
+    console.log("data here-->", data);
+    const {productId, deliveryOptionId} = data;
     console.log("elemId-->", productId);
-    console.log("delivery-->", deliveryId);
-      // updateDeliveryOption(productId, deliveryOptionsId);
+    console.log("delivery-->", deliveryOptionId);
+      updateDeliveryOption(productId, deliveryOptionId);
   })
 
 
 })
 
-function updateDeliveryOption (productId, deliveryId){
-
-  deliveryOptions.forEach((elem) =>{
-    if(elem.deliveryId === deliveryId)
-    {
-      
-    }
-  })
-
-
-
-
-}
