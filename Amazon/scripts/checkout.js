@@ -202,12 +202,11 @@ import { deleteElement, deliveryFunction, updateDeliveryOption } from "./Functio
 
 export function GlobalFunction() {
 
-  let cartSummaryHTML = '';
+  let ResultHtml = '';
 
-  arrayCheckout.forEach((cartItem) => {
-    console.log("checkout here-->", cartItem);
+  arrayCheckout.forEach((elem) => {
 
-    const productId = cartItem.productId;
+    const productId = elem.productId;
 
     let matchingProduct;
     products.forEach((product) =>{
@@ -217,9 +216,9 @@ export function GlobalFunction() {
       }
     });
 
-    const deliveryOptionId = cartItem.deliveryId;
+    const deliveryOptionId = elem.deliveryId;
 
-    console.log("checkout here-->", cartItem);
+    console.log("checkout here-->", elem);
 
     let deliveryOption = '';
 
@@ -237,7 +236,7 @@ export function GlobalFunction() {
     const deliveryDate = today.add(deliveryOption.deliveryDays,'days');
     const dateString = deliveryDate.format('dddd, MMMM D');
 
-    cartSummaryHTML += `
+    ResultHtml += `
       <div class="cart-item-container
         cart-item-container-${matchingProduct.id}">
         <div class="delivery-date">
@@ -257,7 +256,7 @@ export function GlobalFunction() {
             </div>
             <div class="product-quantity">
               <span>
-                Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                Quantity: <span class="quantity-label">${elem.quantity}</span>
               </span>
               <span class="update-quantity-link link-primary">
                 Update
@@ -272,18 +271,17 @@ export function GlobalFunction() {
             <div class="delivery-options-title">
               Choose a delivery option:
             </div>
-            ${deliveryOptionsHTML(matchingProduct, cartItem)}
+            ${deliveryOptionsHTML(matchingProduct, elem)}
           </div>
         </div>
       </div>
     `;
   });
 
-  function deliveryOptionsHTML(matchingProduct, cartItem) {
+  function deliveryOptionsHTML(matchingProduct,cartItem) {
     let html = '';
 
     deliveryOptions.forEach((deliveryOption) => {
-      console.log("delivery -->", deliveryOption);
       const today = dayjs();
       const deliveryDate = today.add(
         deliveryOption.deliveryDays,
@@ -323,9 +321,10 @@ export function GlobalFunction() {
     return html;
   }
 
-  document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
+  document.querySelector('.js-order-summary').innerHTML = ResultHtml;
 
-  document.querySelectorAll('.js-delete-link').forEach((link) => {link.addEventListener('click', () => {
+  document.querySelectorAll('.js-delete-link').forEach((link) => {
+    link.addEventListener('click', () => {
             const productId = link.dataset.productId;
 
             deleteElement(productId);
@@ -336,8 +335,7 @@ export function GlobalFunction() {
       });
     });
 
-  document.querySelectorAll('.js-delivery-option')
-    .forEach((element) => {
+  document.querySelectorAll('.js-delivery-option').forEach((element) => {
       element.addEventListener('click', () => {
         const {productId, deliveryOptionId} = element.dataset;
         updateDeliveryOption(productId, deliveryOptionId);
