@@ -5,6 +5,8 @@ import { products } from "./products.js";
 export function paymentFunction(){
     let codeHtml = '';
     let resultPrice;
+    let TaxHTML = '';
+    let orderTotalHTml = '';
     let price = 0;
     let Shipping = 0;
     let shippingHtml = '';
@@ -23,9 +25,11 @@ export function paymentFunction(){
         })
     
     deliveryOptions.forEach((elem)=>{
+        console.log("elem delivery-->",elem);
+        console.log("elem check-->", element);
         if(elem.deliveryId === element.deliveryId){
-            Shipping = 0;
-            Shipping = elem.priceCent;
+            Shipping = Shipping + elem.priceCent;
+            console.log("shipping heree-->", Shipping);
         }
     })
     afterChipping = price + Shipping;
@@ -35,8 +39,8 @@ export function paymentFunction(){
         
     });
     const numberproduct = arrayCheckout.length;
-    console.log("price-->", price);
-    console.log("length here-->", numberproduct);
+    const tax = price * 0.1;
+    const orderTotal = price + Shipping + tax;
 
     codeHtml= codeHtml + `
         <div>Items (${numberproduct}):</div>
@@ -48,6 +52,17 @@ export function paymentFunction(){
     <div>Shipping &amp; handling:</div>
     <div class="payment-summary-money">${afterChipping}</div>`
 
+
+    TaxHTML = TaxHTML + `
+            <div>Total before tax:</div>
+            <div class="payment-summary-money">${tax}</div>
+    `
+    orderTotalHTml = orderTotalHTml = `
+            <div>Order total:</div>
+            <div class="payment-summary-money">${orderTotal}</div>
+    `
     document.querySelector('.js-payment-summary-row1').innerHTML = codeHtml;
     document.querySelector('.js-payment-summary-row2').innerHTML = shippingHtml;
+    document.querySelector('.js-subtotal-row').innerHTML = TaxHTML;
+    document.querySelector('.js-total-row').innerHTML = orderTotalHTml;
 }

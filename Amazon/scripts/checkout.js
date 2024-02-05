@@ -342,6 +342,7 @@ export function GlobalFunction() {
         const {productId, deliveryOptionId} = element.dataset;
         updateDeliveryOption(productId, deliveryOptionId);
         GlobalFunction();
+        paymentFunction()
       });
     });
 }
