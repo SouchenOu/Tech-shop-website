@@ -3,6 +3,7 @@ import { products } from "./products.js";
 import { saveToLocalStorage } from "../data/ArrayCheckout.js";
 import { deliveryOptions } from "./delivery.js";
 import { deleteElement, deliveryFunction, updateDeliveryOption } from "./Functions.js";
+import { paymentFunction } from "./payment.js";
 
 // function test(){
 //   console.log("checkout here-->", arrayCheckout);
@@ -235,6 +236,7 @@ export function GlobalFunction() {
     const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays,'days');
     const dateString = deliveryDate.format('dddd, MMMM D');
+    console.log("matching here-->", matchingProduct)
 
     ResultHtml += `
       <div class="cart-item-container
@@ -252,7 +254,7 @@ export function GlobalFunction() {
               ${matchingProduct.name}
             </div>
             <div class="product-price">
-              $${matchingProduct.priceCents}
+              $${matchingProduct.price}
             </div>
             <div class="product-quantity">
               <span>
@@ -345,3 +347,5 @@ export function GlobalFunction() {
 }
 
 GlobalFunction();
+paymentFunction();
+
