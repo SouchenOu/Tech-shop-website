@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <!---------------------------Filter and find_____________________-->
+    <!------Filter:  return new array , can manipulate the size of new array ( retuen based )-->
+    <!------Find : return single instance (object) return first match , if no match undefined-->
+    <script>
+        const people = [
+            {name : "soukaina", age : "25", position : "full stack"},
+            {name : "ahmed", age: "40", position : "doctor"},
+            {name : "salma", age: "17", position : "student"}
+        ]
+        // the poeple that their age is less than 30
+        const newArray = people.filter((elem)=>{
+            if(elem.age < 30){
+                return elem;
+
+            }
+        })
+        // the poeple that their name is soukaina
+
+        const newTst = people.filter((elem)=> elem.name === "soukaina");
+        const newTest = people.find((item)=> item.position === 'full stack')
+
+
+        console.log("newArray-->",newArray);
+        console.log("Their name is soukaina-->", newTst);
+        console.log("check find function-->", newTest);
+
+
+    </script>
+</body>
+</html>
