@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <div id="btn"></div>
+    <script>
+        const people = [
+            {
+                name : 'bob',
+                age : '20',
+                position : 'developper'
+            },
+            {
+                name : 'Ahmed',
+                age : '30',
+                position : 'manager',
+            },
+            {
+                name : 'soukaina',
+                age : '24',
+                position : 'full stack',
+            }
+        ]
+
+        const menu = [
+            {
+                name : 'pankackes',
+                categorie: 'breakfast',
+
+            },
+            {
+                name : 'burger',
+                categorie: 'lunch',
+            },
+            {
+                name : 'steak',
+                categorie : 'dinner',
+            },
+            {
+                name : 'eggs',
+                categorie : 'breakfast',
+
+            }
+
+        ]
+
+        const newPoeple = people.map((elem)=>{
+            console.log("elem-->", elem.age);
+            return{
+                firstName : elem.name,
+                oldAge : elem.age,
+            }
+        });
+
+
+        const name = people.map((item)=>`<h1>${item.name}</h1>`);
+        console.log("name here-->", name);
+        document.getElementById('demo').innerHTML = name;
+
+        // with set we dont display the category that is duplicated
+        const category = ['all', ...new Set(menu.map((item)=> item.categorie))];
+        document.getElementById('btn').innerHTML = category.map((elem)=> { console.log("btn-->", elem); return `<button>${elem}</button>`})
+        console.log("categorie-->", category); 
+
+
+    </script>
+</body>
+</html>
