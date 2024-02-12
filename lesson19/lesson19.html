@@ -6,6 +6,27 @@
     <title>Document</title>
 </head>
 <body>
+    <p id="demo"></p>
+    <script>
+         const array = ['1', '2', '3', '4', '-11', '-6', '20'];
+            function check(myNumbers, func ){
+                let result = [];
+
+                for(const i of myNumbers){
+                    console.log("i-->", i);
+                    if(func(i)){
+                        result.push(i);
+
+                    }
+                }
+                return result;
+
+
+            }
+            const result =  check(array, (x)=>x > 0);
+
+            document.getElementById('demo').innerHTML = result;
+    </script>
     
 </body>
 </html>
