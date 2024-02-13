@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const fruits = ["apple", "banana", "orange", "kiwi", "avocado"]
+        const person = {name : "souka", lastName : "ouchen", job : "full stack"}
+        //*** ...rest means the rest of items 
+        const [first, ...rest] = fruits;
+        //***** this also work 'first' give me the first element 'second' give me the second element and 'restOfFruits' give me the rest
+        // const [first, second, ...restOfFruits]= fruits;
+        //*** this will give me the first item then the rest of items 
+        console.log("first here-->", first, rest);
+
+        const spicificFruits = rest.find((elem)=> elem === 'banana');
+        console.log("spicificFruits-->", spicificFruits);
+        const getAverage = (name, ...scores)=>{
+            console.log("name here is -->", name);
+            console.log("scores is-->", scores);
+
+        }
+
+        getAverage(person.name, 12,13,14,0,6);
+    </script>
+</body>
+</html>
