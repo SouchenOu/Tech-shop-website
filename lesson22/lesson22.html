@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const staff = [
+            {
+                name: "soukaina", age: "20", position: "full stack", salary : "5000"
+            },
+            {
+                name : "salma", age: "17", position : "doctor", salary : 6000,
+
+            },
+            {
+                name : "ahmed", age : "20" , position : "front end diveloper" , salary : 7000
+            },
+            {
+                name : "saad", age : "24" , position : "mentor staff" , salary : 8000
+            }
+    ]
+
+    const cart = [
+        {
+            title : "Sumsung E2",
+            price : 200,
+            amount : 1,
+        },
+        {
+            title : "Nokia",
+            price : 200,
+            amount : 2,
+        },
+        {
+            title : "iphone",
+            price : " 20000",
+            amount : 10,
+        }
+    ]
+        // here i calculate the total of the prices
+    const resultSalary = staff.reduce((total, elem)=>{
+        total += elem.salary;
+        console.log("total-->", total);
+        return total;
+
+    },0);
+
+    console.log("result salary-->", resultSalary);
+    // here i calculate the total of amount and prices
+    const result = cart.reduce((total, cartItem)=>{
+        console.log("items here-->", cartItem);
+       const  {amount, price} = cartItem;
+       total.totalAmount = total.totalAmount + amount;
+       total.totalPrice = total.totalPrice + price;
+        return total;
+    }, 
+    {
+        totalAmount : 0,
+        totalPrice : 0
+    })
+
+    console.log("the result of the second test is -->", result);
+    </script>
+</body>
+</html>
