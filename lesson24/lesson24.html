@@ -25,6 +25,11 @@
         }
 
         getAverage(person.name, 12,13,14,0,6);
+        /* here the difference between putting person and ...person in 'newPerson' is when i put ...person city and hobby element display inside person object and print as one object 
+        {name: 'souka', lastName: 'ouchen', job: 'full stack', city: 'Agadir', hobby: 'cooking'} but if i didint write ...person it will print like this city: "Agadir" hobby: "cooking" person: {name: 'souka', lastName: 'ouchen', job: 'full stack'}*/
+        const newPerson = {person, city: "Agadir", hobby : "cooking"};
+
+        console.log("newPerson -->", newPerson);
     </script>
 </body>
 </html>
