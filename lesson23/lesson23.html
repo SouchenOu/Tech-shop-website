@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-----Destructing : faster and easier way to access/ unpack variable from arrays , objects-->
+    <script>
+        const fruits = ["banana", "orange", "lemon"];
+        const friends = ["john", "pop", "Ahmed", "yassin", "jawad"]
+
+        const [john, pop, Ahmed, test, jawad] = friends;
+        console.log("MY friends is", john, pop, Ahmed, test, jawad);
+
+        const bob = {
+            first : 'souka',
+            last: 'ouchen',
+            city : 'chikago',
+            siblings: {
+                sister : 'salma',
+            }
+
+        }
+
+        const {first, last, city, siblings : {sister : favoriteSibling}} = bob;
+
+        console.log(first, city, favoriteSibling);
+
+        function printPerson({first, last, siblings : {sister : favoriteSibling}}){
+            console.log("my first name is -->", first);
+
+        }
+
+        printPerson(bob);
+    </script>
+</body>
+</html>
