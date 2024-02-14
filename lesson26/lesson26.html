@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <h1>Callback function</h1>
+    <h2 class="first">Hello world</h2>
+    <h2 class="second">Hello poeple</h2>
+    <h2 class="third">Hello jaascript</h2>
+    <button class="btn">Click me</button>
+    <script>
+        //*************************CallBack function*******************************//
+        function makeUpperCase(value){
+            console.log(value.toUpperCase())
+        }
+        function reverseString(value){
+            console.log("The result of reversing is -->", value.split().reverse().join()); 
+
+        }
+        function handleFunction(name, func){
+            const fullName = `Smith ${name}`;
+
+            func(fullName);
+
+        }
+
+        handleFunction("soukaina",reverseString );
+        handleFunction("Ahmed", makeUpperCase);
+        handleFunction("Salma", function(value){
+            console.log("The value is", value);
+        })
+        // we can do this also 
+        handleFunction("Ibrahim", (value)=>console.log("Te value is-->", value));
+        const first = document.querySelector('.first');
+        const second = document.querySelector('.second');
+        const third = document.querySelector('.third');
+        const btn = document.querySelector('.btn');
+        btn.addEventListener('click', ()=>{
+            btn.style.color = 'red';
+            setTimeout(()=>{
+                btn.style.color = 'green';
+            },1000);
+            setTimeout(()=>{
+                btn.style.color = 'yellow';
+            },2000);
+        })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
