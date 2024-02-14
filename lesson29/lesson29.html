@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-----------------------------Fetch API : Browser API for HTTP ajax request-->
+    <script>
+        //default GET request, supports other methos as well 
+        // return promise
+
+        const url = "https://www.course-api.com/react-tours-project";
+        console.log(fetch(url));
+
+        fetch(url).then((res)=>res.json()).then((data)=>console.log("data here-->", data)).catch((err)=>console.log(err));
+        const getTours = async()=>{
+            try{
+                const response = await fetch(url);
+                const data = await response.json();
+                console.log("data fetching-->", data);
+
+            }catch(error){
+                console.log("error :", error);
+
+            }
+
+        }
+    </script>
+</body>
+</html>
