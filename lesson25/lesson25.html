@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-----------------------Optional chaining-->
+    <div class="demo">
+        <h1>hello</h1>
+        <h1>Person</h1>
+        <h1>hello</h1>
+
+    </div>
+    
+    <script>
+        const test = document.querySelector('.demo') ;
+        const newTest = Array.from(test);
+        console.log("newTest-->", newTest);
+        const poeple = [
+            {
+                name : 'bob',
+                location : {
+                    street : '123 main street',
+                    timezone : {
+                        offset : '+7:00'
+                    }
+            
+            },
+                
+            },
+            {
+                name : 'peter',
+                location : {
+                    street : '123 Pin street'
+                }
+            },
+            {
+                name : 'susan',
+                location : {
+                    street : '123 Apple street',
+                    timezone : {
+                        offset : '+9:00'
+                    }
+                },
+                
+            }
+        ]
+        // if i want to display the location of each element and also the timezone and offset bur in some of this element their is no timezone we check like this
+        // we use opional or check if if there is the element befaure .. then next
+        poeple.forEach((elem)=>{
+            console.log(elem.location && elem.location.timezone && elem.location.timezone.offset);
+            console.log(elem?.location?.timezone?.offset);
+        })
+    </script>
+    
+</body>
+</html>
