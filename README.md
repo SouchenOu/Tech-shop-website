@@ -1,7 +1,8 @@
 # ES6   -->>   ADVANCED--Javascript
 
 
-https://www.youtube.com/watch?v=SBmSRK3feww&t=1s
 
 
-https://www.youtube.com/watch?v=nZ1DMMsyVyI
+
+https://github.com/SouchenOu/Tech-shop-website/assets/87101785/c0cd547e-6855-4f0f-baf4-97096b1a1834
+
